@@ -1,0 +1,28 @@
+{
+    "manifest_version": 3,
+    "name": "TidyTok",
+    "version": "1.0",
+    "description": "A Chrome extension that helps you manage your tabs better",
+    "permissions": [
+      "contextMenus",
+      "notifications",
+      "storage",
+      "tabs"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "icons": {
+      "48": "icons/icon48.png"
+    },
+    "action": {
+      "default_icon": "icons/icon48.png",
+      "default_popup": "popup.html"
+    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"]
+      }
+    ]
+  }

@@ -1,0 +1,58 @@
+body {
+  width: 250px;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+h2 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+button {
+  width: 100%;
+  padding: 8px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+#reminders {
+  margin-top: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 8px;
+  overflow-wrap: break-word;
+  border-radius: 10px;
+  padding: 8px;
+  background-color: #e0e0e0;
+}
+
+  /* Add this CSS for the action icons */
+.action-icon {
+  cursor: pointer;
+  margin-left: 5px;
+}

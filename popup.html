@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remind Me</title>
+  <link rel="stylesheet" href="styles/popup.css">
+</head>
+
+<body>
+  <!-- New section for the button and last purge date -->
+  <h2>Tidy</h2>
+  <div id="purgeSection">
+    <button id="purgeDuplicates">Purge Duplicate Tabs</button>
+    <p>Last Purge Date: <span id="lastPurgeDate"></span></p>
+  </div>
+
+  <h2>Remind Me</h2>
+  <!-- Set the default value to the current date and time -->
+  <input type="datetime-local" id="reminderDateTime" value="" required>
+  <button id="setReminder">Set Reminder</button>
+
+  <div id="reminders">
+    <h2>Your Reminders</h2>
+    <ul id="reminderList"></ul>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+
+</html>
