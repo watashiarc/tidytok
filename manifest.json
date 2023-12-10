@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "TidyTok",
     "version": "1.0",
-    "description": "A Chrome extension that helps you manage your tabs better",
+    "description": "A Chrome extension that helps you manage your tabs better.",
     "permissions": [
       "contextMenus",
       "notifications",

@@ -1,6 +1,6 @@
-# Remind Me Chrome Extension
+# TidyTok Chrome Extension
 
-A simple Chrome extension that allows you to set reminders for web pages.
+A Chrome extension that helps you manage your tabs better.
 
 ## Features
 
