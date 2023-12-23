@@ -1,3 +1,5 @@
+import Time from './time.js';
+
 chrome.runtime.onInstalled.addListener(() => {
     // Create main context menu item
     chrome.contextMenus.create({
@@ -32,15 +34,15 @@ chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.onClicked.addListener((info, tab) => {
     switch (info.menuItemId) {
       case "in1Hour":
-        handleContextMenuClick(tab, calculateNextHour());
+        handleContextMenuClick(tab, Time.calculateNextHour());
         break;
   
       case "tomorrow":
-        handleContextMenuClick(tab, calculateTomorrow());
+        handleContextMenuClick(tab, Time.calculateTomorrow());
         break;
   
       case "nextWeek":
-        handleContextMenuClick(tab, calculateNextWeek());
+        handleContextMenuClick(tab, Time.calculateNextWeek());
         break;
   
       case "remindMeContextMenu":
@@ -77,24 +79,6 @@ chrome.runtime.onInstalled.addListener(() => {
         console.log(`Reminder set for ${url} at ${reminderDateTime}`);
       }
     });
-  }
-  
-  function calculateNextHour() {
-    const now = new Date();
-    now.setHours(now.getHours() + 1);
-    return now.toLocaleString().slice(0, 16);
-  }
-  
-  function calculateTomorrow() {
-    const now = new Date();
-    now.setDate(now.getDate() + 1);
-    return now.toLocaleString().slice(0, 10) + "T12:00";
-  }
-  
-  function calculateNextWeek() {
-    const now = new Date();
-    now.setDate(now.getDate() + 7);
-    return now.toLocaleString().slice(0, 10) + "T12:00";
   }
   
   // Listen for messages from the popup or content scripts
