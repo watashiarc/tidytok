@@ -28,7 +28,9 @@ A Chrome extension that helps you manage your tabs better.
 ## TODO
 
 - **Management Options for Reminders**
-  - [ ] Open the link associated with a reminder
+  - [x] Open the link associated with a reminder
+    - [ ] Remove from storage once link has been open
+    - [ ] Open link when browser is closed
   - [ ] Edit/reschedule a reminder
   - [ ] Paginate through reminders (put a limit on number of reminders per page)
   - [ ] Search through reminders
