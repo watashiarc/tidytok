@@ -129,16 +129,20 @@ const TabManager = {
               activeTabId = tab.id;
           }
 
-          if (seenUrls.has(tab.url)) {
-              const existingTabId = seenUrls.get(tab.url);
+          // Extract the URL path and query parameters (ignoring the fragment/hashtag)
+          const url = new URL(tab.url);
+          const urlWithoutHash = url.origin + url.pathname + url.search;
+
+          if (seenUrls.has(urlWithoutHash)) {
+              const existingTabId = seenUrls.get(urlWithoutHash);
               if (tab.id === activeTabId) {
                   tabsToClose.push(existingTabId);
-                  seenUrls.set(tab.url, tab.id); // Update to keep the active tab
+                  seenUrls.set(urlWithoutHash, tab.id); // Update to keep the active tab
               } else {
                   tabsToClose.push(tab.id);
               }
           } else {
-              seenUrls.set(tab.url, tab.id);
+              seenUrls.set(urlWithoutHash, tab.id);
           }
       }
 
