@@ -6,7 +6,8 @@ A Chrome extension that helps you manage your tabs better.
 
 - Set reminders to revisit a web page in 1 hour, tomorrow, or next week.
 - View a list of your active reminders.
-- Purge duplicate tabs on demand.
+- Purge duplicate tabs on demand. The active tab is always kept if there's duplicates; otherwise, the rightmost duplicate tab will be kept.
+- View basic tab health metrics (e.g. tabs currentyly open, duplicate tabs detected).
 
 ## Installation
 
@@ -56,3 +57,4 @@ A Chrome extension that helps you manage your tabs better.
   - [ ] Support running duplicate tab purge as a background job. Provide customizations options.
   - [ ] Make duplicate tab purge smarter.
   - [ ] Track duplicate tab purge history.
+  - [ ] Add way to track tabs outside of chrome (since chrome's tab `lastAccessed` property doesn't work well)
