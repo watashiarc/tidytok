@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   UIManager.initialize();
   UIManager.loadReminders();
+  TabManager.updateTabHealthReport();  // Update tab health report on load
 });
 
 /******************************************************
@@ -12,7 +13,7 @@ const UIManager = {
   initialize: function() {
       this.initializeDateTimeInput();
       this.initializeSetReminderButton();
-      this.initializePurgeButton();
+      this.initializePurgeSection();
   },
 
   initializeDateTimeInput: function() {
@@ -27,7 +28,12 @@ const UIManager = {
       setReminderButton.addEventListener('click', ReminderManager.setReminder);
   },
 
-  initializePurgeButton: function() {
+  initializePurgeSection: function() {
+      const lastPurgeDateElement = document.getElementById('lastPurgeDate');
+      const lastPurgeDate = localStorage.getItem('lastPurgeDate');
+      lastPurgeDateElement.textContent = lastPurgeDate ? new Date(lastPurgeDate).toLocaleString() : 'N/A';
+
+      // Initiliaze purge button
       const purgeButton = document.getElementById('purgeDuplicates');
       purgeButton.addEventListener('click', TabManager.purgeDuplicateTabs);
   },
@@ -69,7 +75,12 @@ const UIManager = {
           listItem.appendChild(reminderContent);
           reminderList.appendChild(listItem);
       });
-  }
+  },
+
+  updateTabHealthSection: function(tabsCount, duplicateTabsCount) {
+    document.getElementById('tabsCount').textContent = tabsCount;
+    document.getElementById('duplicateTabsCount').textContent = duplicateTabsCount;
+  },
 };
 
 /******************************************************
@@ -176,7 +187,31 @@ const TabManager = {
       const lastPurgeDateElement = document.getElementById('lastPurgeDate');
       const lastPurgeDate = localStorage.getItem('lastPurgeDate');
       lastPurgeDateElement.textContent = lastPurgeDate ? new Date(lastPurgeDate).toLocaleString() : 'N/A';
-  }
+  },
+
+  // TODO: Optimize this so we can start tracking dupe tabs on load vs iterating it here and then also when we call purge dupes
+  updateTabHealthReport: function() {
+    chrome.tabs.query({}, function (tabs) {
+        let duplicateTabsCount = 0;
+
+        const seenUrls = new Map();
+       
+        for (let i = 0; i < tabs.length; i++) {
+            const tab = tabs[i];
+
+            const url = new URL(tab.url);
+            const urlWithoutHash = url.origin + url.pathname + url.search;
+
+            if (seenUrls.has(urlWithoutHash)) {
+                duplicateTabsCount++;
+            } else {
+                seenUrls.set(urlWithoutHash, tab.id);
+            }
+        }
+
+        UIManager.updateTabHealthSection(tabs.length, duplicateTabsCount);
+    });
+}
 };
 
 /******************************************************

@@ -4,19 +4,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Remind Me</title>
+  <title>TidyTok</title>
   <link rel="stylesheet" href="styles/popup.css">
 </head>
 
 <body>
   <!-- New section for the button and last purge date -->
-  <h2>Tidy</h2>
+  <h2>TidyTok</h2>
+
+  <!-- New section for Tab Health Reporting -->
+  <h2>Tab Health Reporting</h2>
+  <div id="tabHealthSection">
+    <p>Tabs Open: <span id="tabsCount">0</span></p>
+    <p>Duplicate Tabs Detected: <span id="duplicateTabsCount">0</span></p>
+  </div>
+
+  <h2>Tab Management</h2>
   <div id="purgeSection">
     <button id="purgeDuplicates">Purge Duplicate Tabs</button>
     <p>Last Purge Date: <span id="lastPurgeDate"></span></p>
   </div>
 
-  <h2>Remind Me</h2>
+  <h2>Reminders</h2>
   <!-- Set the default value to the current date and time -->
   <input type="datetime-local" id="reminderDateTime" value="" required>
   <button id="setReminder">Set Reminder</button>
